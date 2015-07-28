@@ -23,11 +23,7 @@
     "pg": "^4.4.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.4.1",
-<<<<<<< HEAD
     "serve-favicon": "~2.3.0",
-    "sqlite3": "^3.0.9"
-=======
     "serve-favicon": "~2.3.0"
->>>>>>> f4b07bb4df297138b69df2964ca5dd4ff0203547
   }
 }
