@@ -5,7 +5,11 @@ var quizController = require('../controllers/quiz_controller');
 
 // Página de entrada (home page)
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz..!' });
+});
+
+router.get('/author', function(req, res, next) {
+  res.render('author', { author: 'Rafael Jose Curiel Medina', photo: 'rjcm.jpg' });
 });
 
 // Autoload de comandos con :quizId
