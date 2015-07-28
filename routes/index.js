@@ -18,11 +18,5 @@ router.get('/quizes', 			   quizController.index);
 router.get('/quizes/:quizId(\\d+)', 	   quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
-<table>
-<% var i; for (i=0; i < quizes.length; i++) { %>
-   <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
-<% } %>
-</table>
-
 
 module.exports = router;
