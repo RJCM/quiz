@@ -32,15 +32,18 @@ var sequelize = new Sequelize(null,null,null,
 
 // Importa la definicion de la Tabla Quiz en quiz.js
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
+
 exports.Quiz = Quiz;
 
 // Crea e Importa Tabla de Pregunta en DB
 sequelize.sync().then(function() {
   Quiz.count().then(function(count){
     if (count===0) {
-       Quiz.create({pregunta: 'Capital de Italia',   respuesta: 'Roma'});
-       Quiz.create({pregunta: 'Capital de Portugal', respuesta: 'Lisboa'})
-       .then(function(){console.log('DB Inicializada..!')});
+       Quiz.bulkCreate(
+          [{pregunta: 'Capital de Italia',   respuesta: 'Roma'},
+           {pregunta: 'Capital de Portugal', respuesta: 'Lisboa'}
+          ]
+       ).then(function(){console.log('DB Inicializada..!')});
     };
   });
 });
