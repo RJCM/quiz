@@ -8,12 +8,8 @@
   <body>
     <h2>Quiz: El Juego de las Preguntas.</h2>
 
-    <p>
+    <%= respuesta %><p>
 
-    	<%= respuesta %>
-
-    	<a href="/quizes/<%= quiz.id %>">  Volver </a>
-    </p>
-
+    <a href="/quizes/question"> Intentelo otra vez </a>
   </body>
 </html>
