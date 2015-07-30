@@ -3,7 +3,7 @@
   <tr>
      <td> 
         <a href="quizes/<%= quizes[i].id %>">
-           <%= quizes[i].pregunta %> <%= quizes[i].id %> 
+           <%= quizes[i].id %> <%= quizes[i].pregunta %>
         </a>
      </td>
   </tr>
