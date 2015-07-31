@@ -8,8 +8,8 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz..!', errors:[] });
 });
 
-router.get('/author', function(req, res, next) {
-  res.render('author', { author: 'Rafael Jose Curiel Medina', photo: 'rjcm.jpg' });
+router.get('/author', function(req, res) {
+  res.render('author', { author: 'Rafael Jose Curiel Medina', photo: 'rjcm.jpg', errors:[] });
 });
 
 // Autoload de comandos con :quizId
