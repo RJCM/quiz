@@ -19,20 +19,20 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 
     var login     = req.body.login;
-    var password  = req.body.password;
+    var password  = req.body.pass;
     var date = new Date();
 
     var userController = require('./user_controller');
     userController.autenticar(login, password, function(error, user) {
 
         if (error) {  
-            req.session.errors = [{"message": 'Se ha producido un error: '+ error}];
+            req.session.errors = [{message: "Se ha producido un error: " + error}];
             res.redirect("/login");        
             return;
         }
  
         req.session.user = {id:user.id, username:user.username};
-	req.session.sessionTime = new Date().getTime();
+	req.session.date = date.getTime();
         res.redirect(req.session.redir.toString());
     });
 };
