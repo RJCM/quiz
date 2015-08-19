@@ -28,6 +28,27 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// autologout
+app.use(function(req, res, next) {
+  var d = new Date();
+  var n = d.getTime(); 
+  if (req.session.user) {		
+    res.locals.session = req.session;
+    if (req.session.sessionTime && n - req.session.sessionTime > 30000){
+      delete req.session.user;
+      req.session.redir = "/";
+      res.render('sessions/new', {errors: [{"message": "Sesion caducada"}]});
+  }
+  else {
+    req.session.sessionTime = new Date().getTime();
+    next();
+  }
+}else {
+   next();
+}
+});
+
+
 
 app.use(function(req, res, next) {
 
