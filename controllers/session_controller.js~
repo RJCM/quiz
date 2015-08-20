@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 
     var login     = req.body.login;
     var password  = req.body.password;
-    var date = new Date();
+    
 
     var userController = require('./user_controller');
     userController.autenticar(login, password, function(error, user) {
@@ -32,7 +32,7 @@ exports.create = function(req, res) {
         }
  
         req.session.user = {id:user.id, username:user.username};
-	req.session.date = date.getTime();
+	req.session.sessionTime = new Date().getTime();
         res.redirect(req.session.redir.toString());
     });
 };

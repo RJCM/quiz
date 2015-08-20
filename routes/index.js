@@ -19,7 +19,7 @@ router.param('quizId', quizController.load);  // autoload :quizId
 //Definición de rutas de sesion
 router.get('/login', sessionController.new);//pantalla de login
 router.post('/login', sessionController.create);//procesado de login, crea sesion
-router.delete('/logout', sessionController.destroy);//destruye sesion
+router.get('/logout', sessionController.destroy);//destruye sesion
 
 // Definición de rutas de /quizes
 router.get('/quizes',                      quizController.index);

@@ -31,25 +31,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Auto-Logout
 app.use(function(req, res, next) {
-  var tiempo = new Date();
-  if (!req.session.date) {
-    next()
-  }
-  else { 
-    if (tirmpo.getTime() - req.session.date < 120000) {
-       var date = new Date();
-       req.session.date = date.getTime();
-       next()
-    } 
-    else {
+  var tiempo = new Date().getTime(); 
+  if (req.session.user) {
+    res.locals.session = req.session;
+    if ( tiempo - req.session.sessionTime > 120000){
       delete req.session.user;
-      delete req.session.date;
-      res.render('sessions/new' , { mensaje : ' ¡¡ Sesion caducada !!', errors : [] });
+      req.session.redir = "/";
+      res.render('sessions/new', {errors: [{"message": "Sesion Caduco . . !"}]});
+    }
+    else {
+      req.session.sessionTime = new Date().getTime();
+      next();
     }
   }
-});
-
+  else{
+    next();
+  }
+})
 app.use(function(req, res, next) {
+  if (!req.session.redir) {
+    req.session.redir = '/';
+  }
+
   // guardar path en session.redir para despues de login
   if (!req.path.match(/\/login|\/logout/)) {
     req.session.redir = req.path;
